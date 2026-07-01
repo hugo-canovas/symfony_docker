@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: install checkout
-        uses: actions\checkout@v7
+        uses: actions/checkout@v7
 
       - name: build docker services
         run: docker compose -f docker-compose.yml build
