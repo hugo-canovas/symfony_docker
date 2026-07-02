@@ -6,14 +6,13 @@ COPY symfony/composer.json symfony/composer.lock symfony/symfony.lock ./
 
 RUN composer install --no-dev --no-scripts --prefer-dist --optimize-autoloader
 
-FROM php:8.5-fpm-alpine3.24
+FROM php:8.4-fpm-alpine3.24
 
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
 
-RUN apt-get update && apt-get install -y libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql opcache \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk --no-cache libpq-dev \
+    && docker-php-ext-install pdo pdo_opcache
 
 WORKDIR /var/www/symfony
 
@@ -33,4 +32,4 @@ USER www-data
 
 EXPOSE 9000
 
-CMD ["php-fpm"]
+#CMD ["php-fpm"]
