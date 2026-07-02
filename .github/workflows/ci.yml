@@ -21,7 +21,7 @@ jobs:
           --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
 #      - name: run tests
-#        run: docker compose run -rm php_composer vendor/bin/phpunit
+#        run: docker compose run --rm php_composer vendor/bin/phpunit
 
       - name: stop and clean container
         if: always()
