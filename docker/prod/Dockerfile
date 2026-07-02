@@ -11,8 +11,10 @@ FROM php:8.4-fpm-alpine3.24
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
 
-RUN apk add --no-cache libpq-dev \
-    && docker-php-ext-install pdo pdo_opcache
+RUN apk add --no-cache \
+    postgresql-dev \
+    $PHPIZE_DEPS \
+    && docker-php-ext-install pdo pdo_pgsql opcache
 
 WORKDIR /var/www/symfony
 
