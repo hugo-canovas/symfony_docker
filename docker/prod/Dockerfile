@@ -18,7 +18,7 @@ RUN apk add --no-cache \
 
 WORKDIR /var/www/symfony
 
-COPY --from=composer:2 /usr/bin/composer /user/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY --from=vendor /symfony/vendor ./vendor
 
