@@ -24,10 +24,10 @@ COPY --from=vendor /symfony/vendor ./vendor
 
 COPY symfony/ .
 
-RUN composer dump-atoload --no-dev --optimize
+RUN composer dump-autoload --no-dev --optimize
 RUN php bin/console cache:clear --env-prod --no-debug || true
 
-RUN -p var/cache var/log
+RUN mkdir -p var/cache var/log
 RUN chown -R www-data:www-data var
 
 USER www-data
